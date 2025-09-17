@@ -5,8 +5,8 @@
 Para ejecutar los archivos (.py) se corren en este orden:
 
 #basededatos_creacion.py   (Correr sólo una vez)
-Este archivo crea la base de datos “agenda2025.db” con sus tablas y atributos. 
-Se recomienda no tener el archivo agenda2025.db para que no haya inconsistencias
+Este archivo crea la base de datos “agenda2025.db” con sus tablas, atributos. 
+
 
 #clases.py
 En este archivo contiene las clases con sus métodos. 
