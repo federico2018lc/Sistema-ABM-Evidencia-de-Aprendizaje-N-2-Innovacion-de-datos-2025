@@ -1,6 +1,7 @@
 import sqlite3 
-
+#creamos la clase Contactos, con métodos que interactuan(DML) con la base de datos "agenda2025.db"
 class Contactos:
+    #creamos el objeto contacto con el metodo __init__ 
     def __init__(self, DNI, nombre, apellido, telefono, mail):
         self.DNI = DNI
         self.nombre = nombre
@@ -34,7 +35,9 @@ class Contactos:
 #para agregar: 
 #Crear objeto persona:  persona1 = Contactos("1", "fede", "Lopez", "3512345678", "fede@example.com")
 #Guardar en la base: persona1.agregar_contacto()
-#Listar contactos (método)
+
+#Método para mostrar los contactos guardados en la tabla Contactos
+#utilizacmos un método estático, ya que no necesitamos un objeto en particular para ver toda la lista. 
     @staticmethod
     def mostrar_contactos():
         conector = sqlite3.connect("agenda2025.db") # Crea o usa base de datos
@@ -55,7 +58,9 @@ class Contactos:
         cursor.close()
         conector.close()
         return resultado
-    
+#Para usar este méstodo: Contactos.seleccionar_contactos()  
+
+# Método de modificación   
     def modificar_contacto(self):
         self.conectar_db()
         sql = """
@@ -68,10 +73,11 @@ class Contactos:
         self.conector.commit()
         print("Contacto mofidicado con éxito.")
         self.cerrar_conexion()       
-
 #para usar método:
 #persona = Contactos("1", "Fede", "Lopez", "3512345678", "ag@example.com")
 #persona.modificar_contacto()
+
+#Método para guardar los datos previos a una modificación.
     @staticmethod
     def guardar_datos_previos(DNI):
         conector = sqlite3.connect("agenda2025.db") # usa base de datos
@@ -83,7 +89,7 @@ class Contactos:
         cursor.close()
         conector.close()
 
-#eliminar contactos (método)
+#Método eliminar contactos, (elimina y a la vez guarda ese contacto eliminado en la tabla eliminados como si fuese un backup)
     @staticmethod
     def eliminar_contactos(DNI):
         conector = sqlite3.connect("agenda2025.db") # Crea o usa base de datos
